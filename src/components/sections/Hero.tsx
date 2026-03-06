@@ -8,6 +8,7 @@ import InteractiveDots from "@/components/animations/InteractiveDots";
 import { ChevronDown } from "lucide-react";
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -33,11 +34,12 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Interactive dot grid background */}
-      <InteractiveDots contentRef={contentRef} />
+      <InteractiveDots contentRef={contentRef} containerRef={sectionRef} />
 
       <div ref={contentRef} className="max-w-[1200px] mx-auto px-6 text-center">
         <div className="mb-6">

@@ -42,9 +42,10 @@ const COLOR_LUT = buildColorLUT();
 
 interface Props {
   contentRef: RefObject<HTMLDivElement | null>;
+  containerRef: RefObject<HTMLElement | null>;
 }
 
-export default function InteractiveDots({ contentRef }: Props) {
+export default function InteractiveDots({ contentRef, containerRef }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
   const mouseRef = useRef({ x: -9999, y: -9999 });
@@ -187,9 +188,10 @@ export default function InteractiveDots({ contentRef }: Props) {
       }
     };
 
-    canvas.addEventListener("mousemove", onMouseMove);
-    canvas.addEventListener("mouseleave", onMouseLeave);
-    canvas.addEventListener("click", onClick);
+    const eventTarget = containerRef.current || canvas;
+    eventTarget.addEventListener("mousemove", onMouseMove as EventListener);
+    eventTarget.addEventListener("mouseleave", onMouseLeave as EventListener);
+    eventTarget.addEventListener("click", onClick as EventListener);
 
     // Animation loop
     const dpr = Math.min(window.devicePixelRatio, 2);
@@ -256,9 +258,9 @@ export default function InteractiveDots({ contentRef }: Props) {
 
     return () => {
       cancelAnimationFrame(rafRef.current);
-      canvas.removeEventListener("mousemove", onMouseMove);
-      canvas.removeEventListener("mouseleave", onMouseLeave);
-      canvas.removeEventListener("click", onClick);
+      eventTarget.removeEventListener("mousemove", onMouseMove as EventListener);
+      eventTarget.removeEventListener("mouseleave", onMouseLeave as EventListener);
+      eventTarget.removeEventListener("click", onClick as EventListener);
       ro.disconnect();
       clearTimeout(resizeTimer);
     };
