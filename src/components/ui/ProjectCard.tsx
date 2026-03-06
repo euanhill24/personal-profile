@@ -10,13 +10,13 @@ interface ProjectCardProps {
 }
 
 const gradients = [
-  "from-blue-600 to-indigo-700",
-  "from-violet-600 to-purple-700",
-  "from-teal-500 to-cyan-700",
-  "from-orange-500 to-red-600",
-  "from-emerald-500 to-green-700",
-  "from-sky-500 to-blue-700",
-  "from-rose-500 to-pink-700",
+  "from-indigo-700 to-violet-900",
+  "from-violet-600 to-indigo-800",
+  "from-orange-500 to-rose-600",
+  "from-indigo-600 to-blue-800",
+  "from-amber-500 to-orange-600",
+  "from-purple-600 to-indigo-800",
+  "from-rose-500 to-orange-600",
 ];
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
@@ -40,6 +40,35 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           toggleActions: "play none none none",
         },
       });
+
+      // Animated metric counter
+      if (metricRef.current && project.heroMetricValue != null) {
+        const target = project.heroMetricValue;
+        const prefix = project.heroMetricPrefix || "";
+        const suffix = project.heroMetricSuffix || "";
+
+        if (prefersReduced) {
+          metricRef.current.textContent = `${prefix}${target.toLocaleString()}${suffix}`;
+        } else {
+          const counter = { val: 0 };
+          metricRef.current.textContent = `${prefix}0${suffix}`;
+          gsap.to(counter, {
+            val: target,
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: cardRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+            onUpdate: () => {
+              if (metricRef.current) {
+                metricRef.current.textContent = `${prefix}${Math.round(counter.val).toLocaleString()}${suffix}`;
+              }
+            },
+          });
+        }
+      }
     },
     { scope: cardRef }
   );
@@ -110,7 +139,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
             ref={metricRef}
             className="text-lg font-bold font-mono text-primary"
           >
-            {project.heroMetric}
+            {project.heroMetricPrefix || ""}{project.heroMetricValue.toLocaleString()}{project.heroMetricSuffix || ""}
           </span>
         </div>
 
