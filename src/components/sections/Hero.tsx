@@ -4,10 +4,12 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import TextReveal from "@/components/animations/TextReveal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import InteractiveDots from "@/components/animations/InteractiveDots";
 import { ChevronDown } from "lucide-react";
 
 export default function Hero() {
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -34,13 +36,10 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-primary-light/50 blur-[120px]" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] rounded-full bg-accent/10 blur-[100px]" />
-      </div>
+      {/* Interactive dot grid background */}
+      <InteractiveDots contentRef={contentRef} />
 
-      <div className="max-w-[1200px] mx-auto px-6 text-center">
+      <div ref={contentRef} className="max-w-[1200px] mx-auto px-6 text-center">
         <div className="mb-6">
           <TextReveal
             as="h1"
