@@ -29,28 +29,25 @@ export interface Project {
 export interface PersonalProject {
   id: string;
   title: string;
-  subtitle: string;
+  headline: string;
   description: string;
   techStack: string[];
-  status: "In Progress" | "Live" | "Concept";
+  status: "Active" | "Shipped" | "WIP";
+  githubUrl?: string;
+  liveUrl?: string;
   gradient: string;
   icon: string;
+  year: number;
 }
 
-export interface Skill {
+export interface TechCategory {
   name: string;
-  category: string;
+  items: TechItem[];
 }
 
-export interface SkillCategory {
+export interface TechItem {
   name: string;
   icon: string;
-  skills: string[];
-}
-
-export interface TShapeData {
-  breadth: { label: string; skills: string[] };
-  depth: { label: string; skills: string[] };
 }
 
 export interface Hobby {
