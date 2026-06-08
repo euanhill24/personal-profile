@@ -1,81 +1,49 @@
-import type { SkillCategory, TShapeData } from "@/types";
+import type { TechCategory } from "@/types";
 
-export const tShapeData: TShapeData = {
-  breadth: {
-    label: "Management Consulting",
-    skills: [
-      "Strategy & Operating Models",
-      "Stakeholder Management",
-      "Delivery Leadership",
-      "Business Case Development",
-      "Change Management",
-      "Workshop Facilitation",
-      "Agile & DevOps",
-      "PMO & Governance",
-    ],
-  },
-  depth: {
-    label: "Automation & AI",
-    skills: [
-      "Process Mining (Celonis)",
-      "Intelligent Automation",
-      "Generative AI / LLMs",
-      "Enterprise App Development",
-      "Power Platform",
-      "Data & BI Strategy",
-    ],
-  },
-};
-
-export const skillCategories: SkillCategory[] = [
-  {
-    name: "Microsoft",
-    icon: "Monitor",
-    skills: [
-      "AZ-900 Certified",
-      "Power Apps",
-      "Power BI",
-      "Power Automate",
-      "Co-Pilot Studio",
-      "AI Foundry",
-      "Azure",
-    ],
-  },
+export const techCategories: TechCategory[] = [
   {
     name: "AI & GenAI",
-    icon: "Brain",
-    skills: [
-      "OpenAI / GPT-4",
-      "Claude / Anthropic",
-      "RAG Architecture",
-      "n8n Workflows",
-      "Rainbird",
-      "Cognigy",
-      "Prompt Engineering",
+    items: [
+      { name: "Azure AI Foundry", icon: "Brain" },
+      { name: "Azure AI Agent Service", icon: "Bot" },
+      { name: "OpenAI / GPT-4", icon: "Sparkles" },
+      { name: "Claude / Anthropic", icon: "MessageSquare" },
+      { name: "RAG Architecture", icon: "Database" },
+      { name: "Prompt Engineering", icon: "Pencil" },
+      { name: "n8n Workflows", icon: "Workflow" },
     ],
   },
   {
-    name: "Automation",
-    icon: "Zap",
-    skills: [
-      "Celonis",
-      "Appian",
-      "UiPath",
-      "Automation Anywhere",
-      "Process Mining",
-      "Lean / Six Sigma",
+    name: "Automation & Process Mining",
+    items: [
+      { name: "Celonis", icon: "Activity" },
+      { name: "UiPath", icon: "Cog" },
+      { name: "Automation Anywhere", icon: "RefreshCw" },
+      { name: "Power Automate", icon: "Zap" },
+      { name: "Appian", icon: "Layers" },
+      { name: "Lean / Six Sigma", icon: "Target" },
+    ],
+  },
+  {
+    name: "Microsoft & Cloud",
+    items: [
+      { name: "Power Apps", icon: "LayoutGrid" },
+      { name: "Power BI", icon: "BarChart3" },
+      { name: "Co-Pilot Studio", icon: "Headphones" },
+      { name: "Azure Functions", icon: "Cloud" },
+      { name: "Dataverse", icon: "Database" },
+      { name: "SharePoint", icon: "FolderOpen" },
     ],
   },
   {
     name: "Programming & Data",
-    icon: "Code",
-    skills: [
-      "Python",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "SQL",
-      "GSAP",
+    items: [
+      { name: "Python", icon: "Code" },
+      { name: "TypeScript", icon: "FileCode" },
+      { name: "React / Next.js", icon: "Globe" },
+      { name: "Node.js", icon: "Server" },
+      { name: "SQL", icon: "Table" },
+      { name: "Django / Flask", icon: "Box" },
     ],
   },
 ];
