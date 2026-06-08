@@ -26,10 +26,10 @@
 - Support `prefers-reduced-motion` in all animation components
 
 ### Design Tokens (defined in globals.css @theme block)
-- Primary: oklch(0.45 0.18 250) — Deep blue
-- Accent: oklch(0.65 0.20 160) — Teal-green
-- Surface: oklch(0.985 0.002 250) — Near-white
-- Fonts: Inter (sans), JetBrains Mono (mono)
+- Primary: oklch(0.25 0.02 260) — Near-black ink
+- Accent: oklch(0.62 0.20 25) — Warm terracotta/rust
+- Surface: oklch(0.975 0.005 80) — Warm off-white
+- Fonts: Space Grotesk (sans), DM Mono (mono)
 
 ### Animation Patterns
 - Default ease: power3.out (entrances)

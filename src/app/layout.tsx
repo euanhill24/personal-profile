@@ -1,36 +1,37 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, DM_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "Euan Hill | Technology Consultant",
+  title: "Euan Hill | AI & Automation Consultant",
   description:
-    "T-shaped Technology Consultant with broad management consulting expertise and deep specialisation in automation and AI. Based in Brighton, UK.",
+    "T-shaped consultant with broad management consulting expertise and deep specialisation in automation and AI. Based in Brighton & London.",
   keywords: [
-    "Technology Consultant",
+    "AI Consultant",
     "Automation",
-    "AI",
+    "Agentic AI",
     "Process Mining",
     "Management Consulting",
     "Digital Transformation",
   ],
   authors: [{ name: "Euan Hill" }],
   openGraph: {
-    title: "Euan Hill | Technology Consultant",
+    title: "Euan Hill | AI & Automation Consultant",
     description:
-      "T-shaped Technology Consultant specialising in automation and AI.",
+      "T-shaped consultant specialising in automation and AI.",
     type: "website",
     locale: "en_GB",
   },
@@ -44,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${dmMono.variable} antialiased`}
       >
         {children}
       </body>
