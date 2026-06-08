@@ -142,7 +142,7 @@ export default function Contact() {
             </MagneticButton>
             <MagneticButton
               as="a"
-              href="https://github.com/euanhill"
+              href="https://github.com/euanhill24"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-border text-text px-8 py-3.5 text-base hover:border-primary hover:text-primary"
@@ -152,7 +152,10 @@ export default function Contact() {
             </MagneticButton>
           </div>
 
-          <p className="mt-16 text-sm text-text-muted text-center">
+          <p className="mt-12 text-base text-text-muted text-center font-medium">
+            Based in Brighton & London
+          </p>
+          <p className="mt-4 text-sm text-text-muted text-center">
             Built with Next.js, GSAP, and Tailwind CSS
           </p>
         </div>

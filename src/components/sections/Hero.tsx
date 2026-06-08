@@ -54,8 +54,8 @@ export default function Hero() {
         </div>
 
         <ScrollReveal delay={0.8} direction="up" distance={20}>
-          <p className="text-[clamp(1.1rem,2.5vw,1.5rem)] font-semibold text-primary mb-6">
-            Technology Consultant
+          <p className="text-[clamp(1.1rem,2.5vw,1.5rem)] font-semibold text-accent mb-6">
+            AI & Automation Consultant
           </p>
         </ScrollReveal>
 
