@@ -2,171 +2,147 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    id: "glas",
-    company: "GLAS",
+    id: "loan-admin-platform",
+    company: "Global Loan Administration Provider",
     title: "Greenfield Loan Administration Platform",
     summary:
-      "Technical Product Owner and Delivery Lead for a greenfield loan administration platform managing $750B in assets under management.",
+      "Technical Product Owner for a greenfield loan administration platform replacing legacy technology. Grew team from 4 to 30+ engineers.",
     heroMetric: "90% automation",
     heroMetricValue: 90,
     heroMetricSuffix: "%",
     heroMetricPrefix: "",
-    tags: ["Product Ownership", "Appian", "Python", "Delivery Leadership"],
+    tags: ["Product Ownership", "Appian", "Delivery Leadership", "Greenfield"],
     challenge:
-      "GLAS needed to transform its Client Services operations from manual, error-prone processes into a scalable, automated platform capable of supporting $750B in assets under management.",
+      "A global loan administration and fund services provider needed to replace fragile legacy systems with a scalable, automated platform capable of supporting its full portfolio of assets under management.",
     approach:
-      "Partnered directly with C-suite stakeholders to define product vision and execution model. Directed 20+ developers across six teams using Appian and Python stack. Led greenfield strategy, roadmap creation, and end-to-end delivery.",
+      "Partnered directly with C-suite stakeholders to define product vision. Directed a team that grew from 4 to 30+ engineers. Led greenfield strategy, roadmap creation, and end-to-end delivery using an Appian and Python stack.",
     impact:
-      "Delivered 90% automation of Client Services operations, generating \u00A33.26m recurring annual EBITDA contribution. Established a scalable platform that transformed how the business operates.",
+      "Delivered 90% operational automation across target processes, generating £3M+ in recurring annual EBITDA contribution. Established a scalable platform that transformed how the business operates.",
     metrics: [
       { label: "Operational Automation", value: "90%" },
-      { label: "EBITDA Impact", value: "\u00A33.26m" },
-      { label: "Team Size", value: "20+" },
-      { label: "Assets Under Management", value: "$750B" },
+      { label: "EBITDA Impact", value: "£3M+" },
+      { label: "Team Growth", value: "4 → 30+" },
+      { label: "Industry", value: "Financial Services" },
     ],
   },
   {
-    id: "mclaren",
-    company: "McLaren",
-    title: "Race Day Operations System",
+    id: "nte-intelligence",
+    company: "Major Facilities Management Company",
+    title: "AI-Powered Invoice Intelligence Platform",
     summary:
-      "Led design and development of a race day operations system ensuring correct parts installation with offline capability and geo-redundancy.",
-    heroMetric: "Race-critical",
-    heroMetricValue: 100,
-    heroMetricSuffix: "%",
+      "Designed and delivered a multi-agent AI platform automating breach management across ~50,000 invoices/month for a major North American facilities management company.",
+    heroMetric: "50k invoices/mo",
+    heroMetricValue: 50,
+    heroMetricSuffix: "k/mo",
     heroMetricPrefix: "",
-    tags: ["Python", "React", "SQL", "Offline-First"],
+    tags: ["Agentic AI", "Azure AI Foundry", "Python", "Solution Architecture"],
     challenge:
-      "McLaren needed a system to ensure correct parts installation during race day, requiring offline capability, geo-redundancy, and secure synchronisation across multiple teams in high-pressure environments.",
+      "The client processed ~50,000 service invoices monthly across national retail and hospitality clients. Not-To-Exceed breach management was entirely manual — each resolution took 3–5 days, with identical workflows triggered whether the overage was $3 or $18,000.",
     approach:
-      "Led the design and development using an open-source stack: Python, React, and SQL database. Designed for offline capability and geo-redundancy with authentication and permissions for secure multi-team synchronisation.",
+      "Conducted structured discovery across 26 opportunities, reviewing 138 SOPs. Designed a multi-agent AI platform on Azure AI Foundry comprising an orchestrator and four specialist agents (Labor, Parts, Warranty, Communications) with a web-based Command Center. Introduced a two-tier intelligence model: deterministic validation on completed jobs and predictive flagging on active jobs.",
     impact:
-      "Improved operational accuracy and efficiency in high-pressure race environments. Enabled secure, real-time synchronisation across globally distributed teams.",
+      "Resolution time reduced from 3–5 days to hours. Warranty savings worth millions annually. Eliminated value-blind processing across all 50,000 monthly invoices. Pre-emptive breach prevention via Tier 2 predictions.",
     metrics: [
-      { label: "Stack", value: "Python + React + SQL" },
-      { label: "Capability", value: "Offline-First" },
-      { label: "Security", value: "Auth + Permissions" },
-      { label: "Redundancy", value: "Geo-Redundant" },
+      { label: "Monthly Invoices", value: "~50,000" },
+      { label: "Resolution Time", value: "Days → Hours" },
+      { label: "AI Agents", value: "4 Specialists" },
+      { label: "Delivery", value: "260 person-days" },
     ],
   },
   {
-    id: "unicef",
-    company: "UNICEF",
-    title: "Supply Chain Optimisation",
+    id: "permit-research-agent",
+    company: "US Telecom Infrastructure Company",
+    title: "Robotic Process Study & AI Agent Delivery",
     summary:
-      "Led Lean and process mining optimisation of order-to-ship operations, identifying significant efficiency improvements.",
-    heroMetric: "13 FTEs saved",
-    heroMetricValue: 13,
-    heroMetricSuffix: " FTEs",
+      "Led an engineering track analysing 24 processes across 20,000+ jobs/year, identified $1.35M/year in savings, and delivered a working multi-agent permit research POC.",
+    heroMetric: "$1.35M/yr savings",
+    heroMetricValue: 1350,
+    heroMetricSuffix: "k/yr",
+    heroMetricPrefix: "$",
+    tags: ["Agentic AI", "Azure AI Agent Service", "TypeScript", "Process Mining"],
+    challenge:
+      "A US telecom infrastructure engineering company (1,000+ staff) needed to identify and prioritise automation opportunities across fibre and telecom operations spanning 20,000+ jobs/year and 4,300 annual permit applications across 500+ jurisdictions.",
+    approach:
+      "Conducted 24 discovery workshops. Quantified 21 business cases ranging from $3K to $260K each. Designed and managed a multi-agent AI system — an orchestrator ingests work order polygons, runs GIS spatial queries, then spawns parallel AI research agents to autonomously research jurisdiction-specific permit requirements.",
+    impact:
+      "Identified $1.35M/year in combined savings (351 FTEs). Delivered a phased roadmap from quick-win RPA ($291K/year) to strategic agentic AI ($1.06M/year). Progressed the permit research agent from discovery to working POC.",
+    metrics: [
+      { label: "Annual Savings", value: "$1.35M" },
+      { label: "Processes Analysed", value: "24" },
+      { label: "Jurisdictions Covered", value: "500+" },
+      { label: "FTEs Addressed", value: "351" },
+    ],
+  },
+  {
+    id: "ai-case-classification",
+    company: "Leading Financial Advisory Firm",
+    title: "AI Case Classification & Automation",
+    summary:
+      "Led AI discovery and delivered three case-classification and completeness-checking solutions integrated with Power Automate.",
+    heroMetric: "3 AI solutions",
+    heroMetricValue: 3,
+    heroMetricSuffix: " solutions",
     heroMetricPrefix: "",
-    tags: ["Process Mining", "Lean", "Supply Chain", "Celonis"],
+    tags: ["Azure AI Foundry", "AI Builder", "Power Automate", "Generative AI"],
     challenge:
-      "UNICEF's order-to-ship supply chain operations had significant inefficiencies impacting their ability to deliver critical supplies globally.",
+      "A leading financial services advisory firm needed to improve efficiency and consistency in paraplanner allocation by automating case classification and pre-screening fact-find completeness.",
     approach:
-      "Applied process mining and Lean/Black Belt methodologies to analyse Order-to-Ship throughput. Generated and validated actionable insights with senior stakeholders through data-driven analysis.",
+      "Led AI case classification and completeness-checking design. Evaluated Azure AI Foundry vs AI Builder for each use case. Built orchestration with Power Automate and designed approval/QA steps with iterative testing.",
     impact:
-      "Identified 13 FTEs worth of efficiency improvements. Presented recommendations to senior UNICEF leadership, enabling faster global supply delivery.",
+      "Delivered three production solutions using a combination of AI Builder, Azure AI Foundry, and Power Automate — automating classification, completeness-checking, and routing workflows.",
     metrics: [
-      { label: "Efficiency Gains", value: "13 FTEs" },
-      { label: "Methodology", value: "Lean + Process Mining" },
-      { label: "Scope", value: "Order-to-Ship" },
-      { label: "Stakeholders", value: "Senior Leadership" },
+      { label: "Solutions Delivered", value: "3" },
+      { label: "Platform", value: "Azure AI + Power Automate" },
+      { label: "Industry", value: "Financial Services" },
+      { label: "Scope", value: "Case Classification" },
     ],
   },
   {
-    id: "sandvik",
-    company: "Sandvik",
-    title: "Global Compliance & Performance Tools",
+    id: "process-mining-practice",
+    company: "Global Pharmaceutical Company",
+    title: "Process Mining Practice & Supply Chain Analysis",
     summary:
-      "Designed and delivered a global suite of compliance and performance applications including a Conflict of Interest app for 40,000+ users.",
-    heroMetric: "40,000+ users",
-    heroMetricValue: 40000,
-    heroMetricSuffix: "+",
+      "Built the Celonis operating model for a Crop Science division and ran supply chain discovery producing a roadmap of 23 improvement projects.",
+    heroMetric: "8.9 FTE capacity",
+    heroMetricValue: 8,
+    heroMetricSuffix: ".9 FTEs",
     heroMetricPrefix: "",
-    tags: ["Enterprise Apps", "GPT-4", "Compliance", "Global Rollout"],
+    tags: ["Celonis", "Process Mining", "Operating Models", "Supply Chain"],
     challenge:
-      "Sandvik needed global compliance tools that could serve 40,000+ internal and external users across multiple languages and regions, along with performance assessment solutions for underground engineers.",
+      "A global pharmaceutical and life sciences company lacked a structured approach to process mining in its Crop Science division, missing opportunities to optimise EMEA Customer Service operations.",
     approach:
-      "Designed and delivered a global suite of applications. Leveraged GPT-4 to enable multi-language deployment and automation. Built 'Map My Skills' solution to assess engineer performance underground.",
+      "Developed the Celonis operating model within a hybrid hub-and-spoke structure. Ran discovery, built process heatmaps, and set up governance across Order Management and Order Fulfilment.",
     impact:
-      "Conflict of Interest app achieved 97% user satisfaction across 40,000+ users. Community Involvement platform delivered 110%+ increase in reporting.",
+      "Produced a roadmap of 23 improvement projects with an estimated 8.9 FTE capacity creation. Redesigned the automation team's methodology to incorporate process mining as a core capability.",
     metrics: [
-      { label: "Users Reached", value: "40,000+" },
-      { label: "User Satisfaction", value: "97%" },
-      { label: "Reporting Increase", value: "110%+" },
-      { label: "AI Integration", value: "GPT-4" },
+      { label: "Capacity Created", value: "8.9 FTEs" },
+      { label: "Improvement Projects", value: "23" },
+      { label: "Scope", value: "EMEA Supply Chain" },
+      { label: "Methodology", value: "Celonis + Lean" },
     ],
   },
   {
-    id: "bayer",
-    company: "Bayer",
-    title: "EMEA Process Mining Operating Model",
-    summary:
-      "Established the regional process mining practice and delivered first initiatives in the Order-to-Cash supply chain.",
-    heroMetric: "\u20AC500k+ identified",
-    heroMetricValue: 500,
-    heroMetricSuffix: "k+",
-    heroMetricPrefix: "\u20AC",
-    tags: ["Process Mining", "Celonis", "O2C", "Operating Model"],
-    challenge:
-      "Bayer's EMEA region lacked a structured approach to process mining, missing opportunities to optimise their Order-to-Cash supply chain in the Crop Science division.",
-    approach:
-      "Established the EMEA process mining practice from scratch. Partnered with regional innovation teams to deliver the first process mining initiatives focused on Order-to-Cash processes in the agricultural products division.",
-    impact:
-      "Identified \u20AC500k+ in process improvement opportunities within the Crop Science O2C supply chain, establishing a repeatable model for ongoing optimisation.",
-    metrics: [
-      { label: "Improvements Identified", value: "\u20AC500k+" },
-      { label: "Focus Area", value: "Order-to-Cash" },
-      { label: "Division", value: "Crop Science" },
-      { label: "Scope", value: "EMEA" },
-    ],
-  },
-  {
-    id: "network-rail",
-    company: "Network Rail",
+    id: "rail-bi-innovation",
+    company: "National Rail Infrastructure Operator",
     title: "Intelligent Infrastructure BI & Automation",
     summary:
-      "Led BI strategy and Power Platform automation across a \u00A3400m infrastructure programme, delivering significant cost savings.",
-    heroMetric: "~\u00A3500k saved",
+      "Built an integrated Microsoft tooling strategy and delivered Power BI dashboards, Power Apps, and automation across a major infrastructure programme.",
+    heroMetric: "~£500k saved",
     heroMetricValue: 500,
     heroMetricSuffix: "k",
-    heroMetricPrefix: "~\u00A3",
-    tags: ["Power Platform", "Power BI", "Automation", "PMO"],
+    heroMetricPrefix: "~£",
+    tags: ["Power Platform", "Power BI", "Power Apps", "Power Automate"],
     challenge:
-      "A \u00A3400m infrastructure programme needed to digitise its PMO operations, moving away from manual Excel/PowerPoint processes to scalable, automated reporting and portfolio management.",
+      "A major rail infrastructure programme needed to digitise its PMO operations, moving from manual Excel/PowerPoint processes to scalable, automated reporting and portfolio management.",
     approach:
-      "Designed BI tooling strategy integrating Power Apps, Power BI, Power Automate, Azure, Project Online & SharePoint. Built and deployed automated reporting dashboards for leadership. Created business case for O365 PPM tooling.",
+      "Designed a BI tooling strategy integrating Power Apps, Power BI, Power Automate, Azure, Project Online & SharePoint. Built and deployed automated reporting dashboards for leadership in a DevOps-style rapid delivery cycle.",
     impact:
-      "Delivered ~\u00A3500k in cost savings through automated reporting and workflow optimisation. Reduced administrative burden across the programme and enabled data-driven decision making.",
+      "Delivered ~£500k in cost savings through automated reporting and workflow optimisation. Reduced administrative burden across the programme and enabled data-driven decision making.",
     metrics: [
-      { label: "Cost Savings", value: "~\u00A3500k" },
-      { label: "Programme Value", value: "\u00A3400m" },
-      { label: "Tools Built", value: "5+ Apps" },
+      { label: "Cost Savings", value: "~£500k" },
+      { label: "Programme Value", value: "£400m" },
+      { label: "Apps Built", value: "5+" },
       { label: "Impact", value: "Programme-wide" },
-    ],
-  },
-  {
-    id: "sita-heathrow",
-    company: "SITA / Heathrow",
-    title: "Global Operating Model Transformation",
-    summary:
-      "Redesigned infrastructure support from a local to global follow-the-sun model, enabling continuous coverage via Singapore and Montreal command centres.",
-    heroMetric: "24/7 coverage",
-    heroMetricValue: 24,
-    heroMetricSuffix: "/7",
-    heroMetricPrefix: "",
-    tags: ["Operating Model", "Global Transformation", "Process Design"],
-    challenge:
-      "SITA needed to transform Heathrow's infrastructure support from a local model to a global follow-the-sun model, while maintaining service quality and local engagement during the transition.",
-    approach:
-      "Designed future-state processes through global workshops. Created escalation matrices, incident processes, and deployment documentation. Ran senior leadership alignment sessions including innovative Lego Serious Play workshops.",
-    impact:
-      "Enabled 24/7 continuous engineer coverage via Singapore and Montreal command centres. Improved reliability and coverage while reducing dependency on local resources.",
-    metrics: [
-      { label: "Coverage", value: "24/7 Global" },
-      { label: "Command Centres", value: "3 (Global)" },
-      { label: "Approach", value: "Follow-the-Sun" },
-      { label: "Workshops", value: "Lego Serious Play" },
     ],
   },
 ];
