@@ -1,8 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { displayFont, bodyFont } from "@/lib/fonts";
 import "./globals.css";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://euanhill.com"),
   title: "Euan Hill — AI Consultant & Technologist",
   description:
     "Portfolio of Euan Hill, an AI technology consultant specialising in enterprise AI strategy, intelligent automation, and digital transformation.",
@@ -15,6 +21,9 @@ export const metadata: Metadata = {
     "Euan Hill",
   ],
   authors: [{ name: "Euan Hill" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Euan Hill — AI Consultant & Technologist",
     description:

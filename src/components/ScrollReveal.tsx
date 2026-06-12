@@ -11,7 +11,6 @@ interface ScrollRevealProps {
   animation?: "fadeUp" | "clipReveal" | "fadeIn";
   delay?: number;
   duration?: number;
-  stagger?: number;
   className?: string;
   as?: keyof HTMLElementTagNameMap;
 }
