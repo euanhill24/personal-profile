@@ -18,7 +18,7 @@ function SplitLetters({
   ariaLabel?: string;
 }) {
   return (
-    <span className={className} aria-label={ariaLabel || text} role="text">
+    <span className={className} aria-label={ariaLabel || text}>
       {text.split("").map((char, i) => (
         <span
           key={i}
