@@ -1,7 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import gsap from "gsap";
+
+const POINTER_QUERY = "(pointer: fine)";
+
+function subscribeToPointer(callback: () => void) {
+  const mql = window.matchMedia(POINTER_QUERY);
+  mql.addEventListener("change", callback);
+  return () => mql.removeEventListener("change", callback);
+}
 
 interface MagneticElementProps {
   children: React.ReactNode;
@@ -15,15 +23,11 @@ export default function MagneticElement({
   className = "",
 }: MagneticElementProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(pointer: fine)");
-    setIsDesktop(mql.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
+  const isDesktop = useSyncExternalStore(
+    subscribeToPointer,
+    () => window.matchMedia(POINTER_QUERY).matches,
+    () => false
+  );
 
   useEffect(() => {
     const el = ref.current;
