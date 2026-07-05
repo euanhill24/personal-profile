@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 import { content } from "@/data/content";
 import ScrollReveal from "./ScrollReveal";
 import AnimatedRule from "./AnimatedRule";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function StatCounter({
   value,
@@ -23,11 +21,7 @@ function StatCounter({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
+    if (prefersReducedMotion()) {
       if (countRef.current) countRef.current.textContent = String(value);
       return;
     }
@@ -77,11 +71,7 @@ export default function About() {
     const photo = photoRef.current;
     const bgShape = bgShapeRef.current;
     if (!section || !photo || !bgShape) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
+    if (prefersReducedMotion()) return;
 
     const isMobile = window.innerWidth < 768;
     const photoY = isMobile ? -4 : -8;

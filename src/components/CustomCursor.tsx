@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 
 const DESKTOP_QUERY = "(min-width: 1024px) and (pointer: fine)";
 

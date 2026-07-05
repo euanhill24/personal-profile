@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 import { content } from "@/data/content";
 import ParticleField from "./ParticleField";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function SplitLetters({
   text,
@@ -42,11 +40,7 @@ export default function Hero() {
   const watermarkRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
+    if (prefersReducedMotion()) {
       // Show everything immediately
       document
         .querySelectorAll(".hero-letter")
@@ -123,12 +117,7 @@ export default function Hero() {
   // Scroll velocity skew on watermark
   useEffect(() => {
     const watermark = watermarkRef.current;
-    if (!watermark) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
+    if (!watermark || prefersReducedMotion()) return;
 
     const trigger = ScrollTrigger.create({
       trigger: document.body,

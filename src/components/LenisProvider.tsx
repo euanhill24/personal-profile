@@ -2,10 +2,8 @@
 
 import { createContext, useContext, useEffect, useRef } from "react";
 import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 
 const LenisContext = createContext<React.RefObject<Lenis | null> | null>(
   null
@@ -23,11 +21,7 @@ export default function LenisProvider({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) return;
+    if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
       duration: 1.2,

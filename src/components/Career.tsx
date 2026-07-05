@@ -1,27 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
+import { useSectionWipe } from "@/lib/useSectionWipe";
 import { content } from "@/data/content";
 import ScrollReveal from "./ScrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Career() {
   const timelineLineRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+
+  useSectionWipe(sectionRef);
 
   useEffect(() => {
     const line = timelineLineRef.current;
     const section = sectionRef.current;
     if (!line || !section) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
+    if (prefersReducedMotion()) {
       gsap.set(line, { scaleY: 1 });
       return;
     }
@@ -38,20 +35,8 @@ export default function Career() {
       },
     });
 
-    const wipeTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 90%",
-      end: "top 40%",
-      scrub: 0.5,
-      onUpdate: (self) => {
-        const p = self.progress;
-        section.style.clipPath = `polygon(0 ${100 - p * 100}%, 100% ${100 - p * 100}%, 100% 100%, 0 100%)`;
-      },
-    });
-
     return () => {
       lineTrigger.kill();
-      wipeTrigger.kill();
     };
   }, []);
 

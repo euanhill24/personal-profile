@@ -1,12 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import { useSectionWipe } from "@/lib/useSectionWipe";
 import { content } from "@/data/content";
 import ScrollReveal from "./ScrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function ProjectCard({
   title,
@@ -79,30 +76,7 @@ function ProjectCard({
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
-
-    const wipeTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 90%",
-      end: "top 40%",
-      scrub: 0.5,
-      onUpdate: (self) => {
-        const p = self.progress;
-        section.style.clipPath = `polygon(0 ${100 - p * 100}%, 100% ${100 - p * 100}%, 100% 100%, 0 100%)`;
-      },
-    });
-
-    return () => {
-      wipeTrigger.kill();
-    };
-  }, []);
+  useSectionWipe(sectionRef);
 
   return (
     <section
