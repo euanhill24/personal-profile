@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { ScrollTrigger } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 
 interface Particle {
   x: number;
@@ -22,19 +20,17 @@ export default function ParticleField() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || prefersReducedMotion()) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    const ctx = canvas.getContext("2d")!;
     let width = 0;
     let height = 0;
     let mouseX = -1000;
     let mouseY = -1000;
-    let animId: number;
+    let animId = 0;
+    let running = false;
 
     const mouseRadius = 150;
     let scrollVelocity = 0;
@@ -49,11 +45,18 @@ export default function ParticleField() {
     });
 
     function resize() {
-      width = canvas!.width = canvas!.offsetWidth;
-      height = canvas!.height = canvas!.offsetHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = canvas!.offsetWidth;
+      height = canvas!.offsetHeight;
+      canvas!.width = Math.round(width * dpr);
+      canvas!.height = Math.round(height * dpr);
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
     resize();
     window.addEventListener("resize", resize);
+
+    // Mouse repulsion only makes sense with a fine pointer
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
 
     const onMove = (e: MouseEvent) => {
       const rect = canvas!.getBoundingClientRect();
@@ -64,8 +67,10 @@ export default function ParticleField() {
       mouseX = -1000;
       mouseY = -1000;
     };
-    window.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mouseleave", onLeave);
+    if (finePointer) {
+      window.addEventListener("mousemove", onMove);
+      canvas.addEventListener("mouseleave", onLeave);
+    }
 
     // Create particles
     const count = Math.min(350, Math.floor((width * height) / 4000));
@@ -86,7 +91,9 @@ export default function ParticleField() {
     }
 
     function animate() {
-      ctx.clearRect(0, 0, width, height);
+      if (!running) return;
+
+      ctx!.clearRect(0, 0, width, height);
 
       // Update & draw particles
       for (const p of particles) {
@@ -119,10 +126,10 @@ export default function ParticleField() {
         if (p.y > height + 10) p.y = -10;
 
         // Draw — crisp circles, no blur
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(139, 115, 85, ${p.opacity})`;
-        ctx.fill();
+        ctx!.beginPath();
+        ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(139, 115, 85, ${p.opacity})`;
+        ctx!.fill();
       }
 
       // Connections via spatial grid — stretch with scroll velocity
@@ -139,7 +146,7 @@ export default function ParticleField() {
         grid[key].push(i);
       }
 
-      ctx.lineWidth = 0.5;
+      ctx!.lineWidth = 0.5;
       for (let i = 0; i < particles.length; i++) {
         const cx = Math.floor(particles[i].x / cellSize);
         const cy = Math.floor(particles[i].y / cellSize);
@@ -157,11 +164,11 @@ export default function ParticleField() {
 
               if (d < maxDist) {
                 const opacity = (1 - d / maxDist) * 0.12;
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(139, 115, 85, ${opacity})`;
-                ctx.stroke();
+                ctx!.beginPath();
+                ctx!.moveTo(particles[i].x, particles[i].y);
+                ctx!.lineTo(particles[j].x, particles[j].y);
+                ctx!.strokeStyle = `rgba(139, 115, 85, ${opacity})`;
+                ctx!.stroke();
               }
             }
           }
@@ -171,14 +178,34 @@ export default function ParticleField() {
       animId = requestAnimationFrame(animate);
     }
 
-    animate();
+    function start() {
+      if (running) return;
+      running = true;
+      animId = requestAnimationFrame(animate);
+    }
+
+    function stop() {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(animId);
+    }
+
+    // Only animate while the hero is actually on screen
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+      else stop();
+    });
+    observer.observe(canvas);
 
     return () => {
-      cancelAnimationFrame(animId);
+      stop();
+      observer.disconnect();
       velocityTrigger.kill();
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", onMove);
-      canvas.removeEventListener("mouseleave", onLeave);
+      if (finePointer) {
+        window.removeEventListener("mousemove", onMove);
+        canvas.removeEventListener("mouseleave", onLeave);
+      }
     };
   }, []);
 

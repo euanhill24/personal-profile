@@ -136,6 +136,13 @@ body {
   top: 1rem;
 }
 
+/* Visible keyboard focus — essential since the custom cursor hides the native one */
+:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* Selection color */
 ::selection {
   background-color: var(--color-copper-light);

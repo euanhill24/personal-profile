@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 
 const POINTER_QUERY = "(pointer: fine)";
 
@@ -31,12 +32,7 @@ export default function MagneticElement({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || !isDesktop) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) return;
+    if (!el || !isDesktop || prefersReducedMotion()) return;
 
     const onMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();

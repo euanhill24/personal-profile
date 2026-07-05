@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 import MagneticElement from "./MagneticElement";
 import { useLenis } from "./LenisProvider";
 
@@ -21,11 +22,7 @@ export default function Nav() {
     const nav = navRef.current;
     if (!nav) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
+    if (prefersReducedMotion()) {
       gsap.set(nav, { opacity: 1 });
       return;
     }
