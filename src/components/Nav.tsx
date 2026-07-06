@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 import MagneticElement from "./MagneticElement";
+import { useLenis } from "./LenisProvider";
 
 const sections = [
   { label: "About", id: "about" },
@@ -14,24 +16,37 @@ const sections = [
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
+  const lenisRef = useLenis();
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 2400);
-    return () => clearTimeout(timer);
-  }, []);
+    const nav = navRef.current;
+    if (!nav) return;
 
-  useEffect(() => {
-    if (!visible || !navRef.current) return;
-    gsap.fromTo(
-      navRef.current,
+    if (prefersReducedMotion()) {
+      gsap.set(nav, { opacity: 1 });
+      return;
+    }
+
+    const tween = gsap.fromTo(
+      nav,
       { opacity: 0, y: -10 },
-      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }
+      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 2.4 }
     );
-  }, [visible]);
+
+    return () => {
+      tween.kill();
+    };
+  }, []);
 
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    const lenis = lenisRef?.current;
+    if (lenis) {
+      lenis.scrollTo(id === "top" ? 0 : `#${id}`);
+      return;
+    }
+
+    // Fallback when Lenis is not running (reduced motion)
     if (id === "top") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -39,8 +54,6 @@ export default function Nav() {
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  if (!visible) return null;
 
   return (
     <nav

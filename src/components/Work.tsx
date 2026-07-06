@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { prefersReducedMotion } from "@/lib/motion";
 import { content } from "@/data/content";
 import ScrollReveal from "./ScrollReveal";
 import AnimatedRule from "./AnimatedRule";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function WorkCard({
   number,
@@ -33,11 +31,7 @@ function WorkCard({
     const card = cardRef.current;
     if (!card) return;
 
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReduced) {
+    if (prefersReducedMotion()) {
       gsap.set(card, { clipPath: "inset(0% 0 0 0)", opacity: 1 });
       return;
     }

@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { displayFont, bodyFont } from "@/lib/fonts";
 import "./globals.css";
 
@@ -31,6 +33,12 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Euan Hill — AI Consultant & Technologist",
+    description:
+      "Portfolio of Euan Hill, an AI technology consultant specialising in enterprise AI strategy, intelligent automation, and digital transformation.",
+  },
   robots: {
     index: true,
     follow: true,
@@ -56,6 +64,14 @@ export default function RootLayout({
               description:
                 "AI technology consultant specialising in enterprise AI strategy, intelligent automation, and digital transformation.",
               url: "https://euanhill.com",
+              sameAs: [
+                "https://www.linkedin.com/in/euan-hill/",
+                "https://github.com/euanhill24",
+              ],
+              worksFor: {
+                "@type": "Organization",
+                name: "Roboyo",
+              },
             }),
           }}
         />
@@ -65,6 +81,8 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
